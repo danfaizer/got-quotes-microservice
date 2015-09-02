@@ -10,6 +10,7 @@ script:
 - echo $packer_host
 - chmod 600 cert.pem
 - rsync -a -arvce "ssh -i cert.pem -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" . packer@$packer_host:/tmp/${TRAVIS_BUILD_ID}
-- ssh -t -t -i cert.pem -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no packer@$packer_host "${TRAVIS_BUILD_ID}"
+- ls -l cert.pem
+- ssh -vvv -t -t -i cert.pem -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no packer@$packer_host "${TRAVIS_BUILD_ID}"
 after_success:
 - echo "ok"
